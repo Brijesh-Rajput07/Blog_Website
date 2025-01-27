@@ -1,0 +1,96 @@
+﻿@model WebsiteASPNETCOREMVC.Models.Blog
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-center mb-4" style="padding-top:100px">Edit Your Blog</h1>
+
+<div class="container">
+    <hr />
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form asp-action="Edit" asp-controller="Page" method="post" enctype="multipart/form-data">
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                            {
+                                <li>@error.ErrorMessage</li>
+                            }
+                        </ul>
+                    </div>
+                }
+
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <input type="hidden" asp-for="Id" />
+
+                <!-- Title -->
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" placeholder="Enter Title" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <br />
+
+                <!-- Content -->
+                <div class="form-group">
+                    <label asp-for="Content" class="control-label"></label>
+                    <textarea asp-for="Content" class="form-control" placeholder="Enter Content" rows="5"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+                <br />
+
+                <!-- Category -->
+                <div class="form-group">
+                    <label asp-for="Category" class="control-label"></label>
+                    <input asp-for="Category" class="form-control" placeholder="Enter Category" />
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+                <br />
+
+                <!-- Tags -->
+                <div class="form-group">
+                    <label asp-for="Tags" class="control-label"></label>
+                    <input asp-for="Tags" class="form-control" placeholder="Enter Tags" />
+                    <span asp-validation-for="Tags" class="text-danger"></span>
+                </div>
+                <br />
+
+                <!-- Featured Image -->
+                <div class="form-group">
+                    <label asp-for="FeaturedImage" class="control-label">Featured Image</label>
+                    <input type="file" name="FeaturedImage" class="form-control" />
+                </div>
+                <br />
+
+                <!-- File Path -->
+                <div class="form-group">
+                    <label asp-for="FilePath" class="control-label"></label>
+                    <input asp-for="FilePath" class="form-control" placeholder="Enter File Path" />
+                    <span asp-validation-for="FilePath" class="text-danger"></span>
+                </div>
+                <br />
+
+                <!-- Publish Date -->
+                <div class="form-group">
+                    <label asp-for="PublishDate" class="control-label"></label>
+                    <input asp-for="PublishDate" type="date" class="form-control" />
+                    <span asp-validation-for="PublishDate" class="text-danger"></span>
+                </div>
+                <br />
+
+                <!-- Submit Button -->
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary btn-lg btn-block" />
+                </div>
+                <br />
+            </form>
+        </div>
+    </div>
+
+    
+</div>

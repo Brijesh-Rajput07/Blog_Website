@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div style=" margin-top:80px">
+@{
+    if (@TempData["message"] != null)
+    {
+        var t = (bool)TempData["message"];
+        if (t)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Your message has been received successfully!</strong> We will get in touch with you as soon as possible.
+                    <button type="button" class="btn-close" aria-label="Close" onclick="redirectToIndex()"></button>
+
+                    <script>
+                        function redirectToIndex() {
+                            window.location.href = '/Page/Index';
+                        }
+                    </script>
+
+            </div>
+        }
+    }
+}
+</div>

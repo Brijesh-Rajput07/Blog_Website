@@ -1,0 +1,113 @@
+﻿@model WebsiteASPNETCOREMVC.Models.Blog
+
+@{
+    ViewData["Title"] = "Create Blog";
+}
+
+<style>
+    
+    .blog-container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    h2{
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        padding: 12px 20px;
+        color: white;
+        font-size: 1.2rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+
+<div class="blog-container">
+        <div class="justify-content-center align-items-center">
+    <h2>Create a New Blog</h2>
+        </div>
+    <form asp-action="Create" asp-controller="Page" method="post" enctype="multipart/form-data">
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <li>@error.ErrorMessage</li>
+                    }
+                </ul>
+            </div>
+        }
+
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" placeholder="Enter Blog Title" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Content"></label>
+            <textarea asp-for="Content" class="form-control" rows="5" placeholder="Enter Blog Content"></textarea>
+            <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Category"></label>
+            <input asp-for="Category" class="form-control" placeholder="Enter Blog Category" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Tags"></label>
+            <input asp-for="Tags" class="form-control" placeholder="Enter Blog Tags (comma separated)" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="FeaturedImage"></label>
+            <input type="file" name="FeaturedImage" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="FilePath"></label>
+            <input asp-for="FilePath" class="form-control" placeholder="Enter Blog Title" />
+            <span asp-validation-for="FilePath" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PublishDate"></label>
+            <input asp-for="PublishDate" class="form-control" type="date" />
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn-primary">Create Blog</button>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

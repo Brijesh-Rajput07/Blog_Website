@@ -1,0 +1,104 @@
+﻿@model WebsiteASPNETCOREMVC.Models.ContactView
+
+@{
+    ViewData["Title"] = "Contact";
+}
+
+<style>
+    .contact-container {
+        color: white;
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .contact-header {
+        font-size: 2.5rem;
+        text-align: center;
+        text-decoration: underline;
+        margin-bottom: 20px;
+    }
+
+    .contact-description {
+        font-size: 1.5rem;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 600px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgba(0, 0, 33, 0.8); /* Background applied to the form */
+        border-radius: 10px;
+    }
+
+    .form-group {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: 2px solid white;
+        border-radius: 5px;
+        background-color: transparent;
+        color: white;
+    }
+
+        .form-control:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+        }
+
+    .submit-button {
+        background: linear-gradient(to bottom, #00bcd4, #0097a7);
+        color: white;
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+
+        .submit-button:hover {
+            transform: scale(1.1);
+        }
+</style>
+
+<div class="contact-container">
+    <p class="contact-header">Contact</p>
+    <p class="contact-description" style="color:rgba(0, 0, 33, 0.8)">Submit the below form to get in touch with us.</p>
+
+    <form asp-action="Contact" asp-controller="Home" method="post" class="form-container">
+        <div class="form-group">
+            <input asp-for="Name" class="form-control" placeholder="Enter Your Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input asp-for="Email" class="form-control" placeholder="Enter Your Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <textarea asp-for="Message" class="form-control" rows="5" placeholder="Enter Your Message"></textarea>
+            <span asp-validation-for="Message" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="submit-button">Let's Talk</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
